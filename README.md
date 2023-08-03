@@ -14,7 +14,7 @@ Step -1: Pull docker Image
 
 docker pull apache/nifi:latest
 
-<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-04%2001-08-23.png?token=GHSAT0AAAAAACF4RWEKR2RUVJMGXJVVLVNKZGMDGYQ"/>
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-04%2001-08-23.png?token=GHSAT0AAAAAACF4RWELLD2WGKLPRMAKUNPMZGMFQ6A"/>
 
 Step 2: Create a container
 
@@ -52,8 +52,11 @@ visit http://publicIP:8081/nifi
 
 #how to import template to nifi
       go to http://publicIP:8081/nifi
+      Download template Joshua-final-stocks-nifi.xml from this repo
       click upload template
+      
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-04%2002-23-55.png?token=GHSAT0AAAAAACF4RWEKMU7ZNBHUJYEJOUBYZGMFGUQ"/>
+
 select template and upload it.
 
 
