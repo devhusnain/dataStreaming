@@ -1,7 +1,13 @@
 # dataStreaming
 
+ache Nifi comes to mind if you are looking for a simple, but robust, tool to process data from various sources. 
+In short, Apache NiFi is a tool to process and distribute data. Its intuitive UI supports routing definitions, a variety of connectors 
+(in/out), and many built-in processors. All these features combined together make it a suitable optional platform for our use case.
+
 #how to run nifi on ec2
 https://hub.docker.com/r/apache/nifi/
+
+
 https://hub.docker.com/r/apache/nifi-...
 
 Step -1: Pull docker Image
