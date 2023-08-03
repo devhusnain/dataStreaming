@@ -8,6 +8,8 @@ Step -1: Pull docker Image
 
 docker pull apache/nifi:latest
 
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-04%2001-08-23.png?token=GHSAT0AAAAAACF4RWEKR2RUVJMGXJVVLVNKZGMDGYQ"/>
+
 Step 2: Create a container
 
 Name my container (I named it devnifi)
