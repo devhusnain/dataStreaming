@@ -44,4 +44,4 @@ visit http://publicIP:8081/nifi
 
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-04%2001-30-45.png?token=GHSAT0AAAAAACF4RWEKH5BTZPKZT277UFEEZGMDUUQ"/>
 
- docker inspect devnifi --format='{{.NetworkSettings.Networks.bridge.Gateway}}'
+
