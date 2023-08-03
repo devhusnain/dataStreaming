@@ -12,6 +12,8 @@ docker pull apache/nifi:latest
 
 Step 2: Create a container
 
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-04%2001-22-17.png?token=GHSAT0AAAAAACF4RWELY5HNSKB5JV2MEVJMZGMDPOQ"/>
+
 Name my container (I named it devnifi)
 Controlling the port, and mapped to 8443
 Being able to see the loading and standard output of Nifi
