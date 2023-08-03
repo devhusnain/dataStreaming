@@ -21,9 +21,13 @@ Step 2: Create a container
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-04%2001-22-17.png?token=GHSAT0AAAAAACF4RWELY5HNSKB5JV2MEVJMZGMDPOQ"/>
 
 Name my container (I named it devnifi)
+
 Controlling the port, and mapped to 8443
+
 Being able to see the loading and standard output of Nifi
+
 Create a shared volume between my host (shared-directory) and the container (ls-target)
+
 docker run --name devnifi -p 8081:8081 -d -e NIFI_WEB_HTTP_PORT='8081' apache/nifi:latest
 
 
@@ -64,11 +68,14 @@ visit http://publicIP:8081/nifi
 #about MySQL 
 #Step1: Pull MySQL Image from Docker Hub<br>
 First, pull MySQL from Docker Hub to the local system by executing the provided command in terminal <br>
+
 #Step2: Build and Run MySQL Container <br>
 Then, create and run the MySQL container using the MySQL image through the “docker run -td –name mysql -e MYSQL_ROOT_PASSWORD=<password> mysql:latest” command:<br>
+
 The “–name” option defines the name for the container i.e., “mySql-cont”.
 The “-e MYSQL_ROOT_PASSWORD” specifies the root password to “mysql123”.
 The “mysql:latest” is the latest MySQL Docker image to use for the container:<br>
+
 #Step3: View Running MySQL Container
 Write out the below-listed command to verify whether the MySQL container is running or not<br>
 
@@ -77,8 +84,10 @@ Write out the below-listed command to verify whether the MySQL container is runn
 #Step4: Access MySQL Container
 After that, use the “docker exec -it mysql bash ” command with the container name to open the Bash shell inside the running MySQL container:
 The above-stated command has opened the Bash shell and now users can execute MySQL commands within the running MySQL container.<br>
+
 #Step5: Connect to MySQL Database
 Next, connect to the MySQL database as the root user via the following command and enter the password in an interactive mode:<br>
+
 #Step6: Create a Database in MySQL
 To create a database in MySQL, execute the “CREATE DATABASE stream_db;” command:
 
