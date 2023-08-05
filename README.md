@@ -152,3 +152,51 @@ CREATE DATABASE stream_db;
 
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-04%2002-09-32.png?token=GHSAT0AAAAAACF4RWEKU7Q4PSMD5BR34BKWZGMFAHA"/>
 
+
+
+
+
+#Running Apache Airflow container on ec2
+
+Older versions of docker-compose do not support all the features required by the Airflow docker-compose.yaml file, so double check that your version meets the minimum version requirements.
+
+The default amount of memory available for Docker on macOS is often not enough to get Airflow up and running. If enough memory is not allocated, it might lead to the webserver continuously restarting. You should allocate at least 4GB memory for the Docker Engine (ideally 8GB).
+
+You can check if you have enough memory by running this command:
+
+docker run --rm "debian:bullseye-slim" bash -c 'numfmt --to iec $(echo $(($(getconf _PHYS_PAGES) * $(getconf PAGE_SIZE))))'
+
+Fetching docker-compose.yaml
+To deploy Airflow on Docker Compose, you should fetch docker-compose.yaml.
+
+curl -LfO 'https://airflow.apache.org/docs/apache-airflow/2.6.3/docker-compose.yaml'
+
+Initializing Environment
+Before starting Airflow for the first time, you need to prepare your environment, i.e. create the necessary files, directories and initialize the database.
+
+Setting the right Airflow user
+On Linux, the quick-start needs to know your host user id and needs to have group id set to 0. Otherwise the files created in dags, logs and plugins will be created with root user ownership. You have to make sure to configure them for the docker-compose:
+
+
+mkdir -p ./dags ./logs ./plugins ./config
+
+echo -e "AIRFLOW_UID=$(id -u)" > .env
+
+For other operating systems, you may get a warning that AIRFLOW_UID is not set, but you can safely ignore it. You can also manually create an .env file in the same folder as docker-compose.yaml with this content to get rid of the warning:
+
+AIRFLOW_UID=50000
+
+Initialize the database
+On all operating systems, you need to run database migrations and create the first user account. To do this, run.
+
+docker compose up airflow-init
+
+Running Airflow
+Now you can start all services:
+
+docker compose up
+
+see the documentation:
+
+https://airflow.apache.org/docs/apache-airflow/stable/howto/docker-compose/index.html
+
