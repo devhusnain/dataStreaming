@@ -14,7 +14,7 @@ Step -1: Pull docker Image
 
 docker pull apache/nifi:latest
 
-<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-04%2001-08-23.png?token=GHSAT0AAAAAACF4RWELLD2WGKLPRMAKUNPMZGMFQ6A"/>
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-04%2001-08-23.png"/>
 
 Step 2: Create a container
 
