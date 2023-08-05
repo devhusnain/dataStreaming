@@ -9,46 +9,46 @@ sudo/root privileges
 #Step 1: Add Docker's Repository To Your System
 The recommended way to install Docker Compose and related packages from Docker is to add Docker's repository to your system's list of repos. Adding Docker's repo will allow you to download and update the latest packages using the apt package manager.
 
-To begin, update your package list:
+To begin, update your package list:<br>
 
-apt update -y
+apt update -y<br>
 Next, you'll need these four packages to allow apt to work with HTTPS-based repositories:
 
 ca-certificates - A package that verifies SSL/TLS certificates.
 curl - A popular data transfer tool that supports multiple protocols including HTTPS.
 gnupg - An open source implementation of the Pretty Good Privacy (PGP) suite of cryptographic tools.
 lsb-release - A utility for reporting Linux Standard Base (LSB) versions.
-Use this command to install those packages:
+Use this command to install those packages:<br>
 
-apt install ca-certificates curl gnupg lsb-release
+apt install ca-certificates curl gnupg lsb-release<br>
 Output will look similar to:Install prerequisites
 
-Make a directory for Docker's GPG key:
+Make a directory for Docker's GPG key:<br>
 
-mkdir /etc/apt/demokeyrings
-Use curl to download Docker's keyring and pipe it into gpg to create a GPG file so apt trusts Docker's repo:
+mkdir /etc/apt/demokeyrings<br>
+Use curl to download Docker's keyring and pipe it into gpg to create a GPG file so apt trusts Docker's repo:<br>
 
- curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/demokeyrings/demodocker.gpg
+ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/demokeyrings/demodocker.gpg<br>
  
-Add the Docker repo to your system with this command:
+Add the Docker repo to your system with this command:<br>
 
  echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/demokeyrings/demodocker.gpg] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list
-The output should look similar to:Add official Docker repo
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list<br>
+The output should look similar to:Add official Docker repo<br>
 
-#Step 2: Install Docker Compose And Related Packages
-Now that you added Docker's repo, update your package lists again:
+#Step 2: Install Docker Compose And Related Packages<br>
+Now that you added Docker's repo, update your package lists again:<br>
 
-apt update -y
-Next, install Docker-CE (Community Edition), the Docker-CE CLI, the containerd runtime, and Docker Compose with this command:
+apt update -y <br>
+Next, install Docker-CE (Community Edition), the Docker-CE CLI, the containerd runtime, and Docker Compose with this command:<br>
 
-apt install docker-ce docker-ce-cli containerd.io docker-compose-plugin
-Output should look similar to:Install Docker
+apt install docker-ce docker-ce-cli containerd.io docker-compose-plugin<br>
+Output should look similar to:Install Docker<br>
 
-You can verify Docker-CE, the Docker-CE CLI, containerd, and Docker Compose are installed by checking their versions with these commands:
+You can verify Docker-CE, the Docker-CE CLI, containerd, and Docker Compose are installed by checking their versions with these commands:<br>
 
-docker --version; docker compose version;ctr version
+docker --version; docker compose version;ctr version<br>
 
 
 
