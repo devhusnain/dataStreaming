@@ -213,3 +213,13 @@ see the documentation:
 
 https://airflow.apache.org/docs/apache-airflow/stable/howto/docker-compose/index.html
 
+
+#How to deploy fastapi using nginx
+
+clone the repo by using this command
+git clone https://github.com/devhusnain/dataStreaming.git
+use these commands to install python-pip and requirements for fastapi 
+sudo apt-get update
+sudo apt install python3-pip
+pip3 install -r requirements.txt
+
