@@ -172,10 +172,14 @@ You can check if you have enough memory by running this command:
 
 docker run --rm "debian:bullseye-slim" bash -c 'numfmt --to iec $(echo $(($(getconf _PHYS_PAGES) * $(getconf PAGE_SIZE))))'
 
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-06%2001-47-56.png"/>
+
 Fetching docker-compose.yaml
 To deploy Airflow on Docker Compose, you should fetch docker-compose.yaml.
 
 curl -LfO 'https://airflow.apache.org/docs/apache-airflow/2.6.3/docker-compose.yaml'
+
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-06%2001-51-06.png"/>
 
 Initializing Environment
 Before starting Airflow for the first time, you need to prepare your environment, i.e. create the necessary files, directories and initialize the database.
@@ -202,6 +206,9 @@ Now you can start all services:
 
 docker compose up
 
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-06%2001-58-19.png"/>
+
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-06%2002-28-55.png"/>
 see the documentation:
 
 https://airflow.apache.org/docs/apache-airflow/stable/howto/docker-compose/index.html
