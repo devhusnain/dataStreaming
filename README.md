@@ -1,5 +1,61 @@
 # dataStreaming
 
+#How To Install Docker Compose on Ubuntu 20.04
+Now that we know what Docker Compose is, let's dive into installing the latest Docker Compose on Ubuntu. We'll borrow from the official Docker Compose Linux install docs, but we'll streamline the process here so you can hit the ground running with this demo project. Once Docker Compose is installed on our Ubuntu 20.04 system, we'll use it to run a simple multi-service demo app.
+
+#Prerequisites
+Access to the terminal of an Ubuntu 20.04 (or similar) system
+sudo/root privileges
+#Step 1: Add Docker's Repository To Your System
+The recommended way to install Docker Compose and related packages from Docker is to add Docker's repository to your system's list of repos. Adding Docker's repo will allow you to download and update the latest packages using the apt package manager.
+
+To begin, update your package list:
+
+apt update -y
+Next, you'll need these four packages to allow apt to work with HTTPS-based repositories:
+
+ca-certificates - A package that verifies SSL/TLS certificates.
+curl - A popular data transfer tool that supports multiple protocols including HTTPS.
+gnupg - An open source implementation of the Pretty Good Privacy (PGP) suite of cryptographic tools.
+lsb-release - A utility for reporting Linux Standard Base (LSB) versions.
+Use this command to install those packages:
+
+apt install ca-certificates curl gnupg lsb-release
+Output will look similar to:Install prerequisites
+
+Make a directory for Docker's GPG key:
+
+mkdir /etc/apt/demokeyrings
+Use curl to download Docker's keyring and pipe it into gpg to create a GPG file so apt trusts Docker's repo:
+
+ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/demokeyrings/demodocker.gpg
+ 
+Add the Docker repo to your system with this command:
+
+ echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/demokeyrings/demodocker.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list
+The output should look similar to:Add official Docker repo
+
+#Step 2: Install Docker Compose And Related Packages
+Now that you added Docker's repo, update your package lists again:
+
+apt update -y
+Next, install Docker-CE (Community Edition), the Docker-CE CLI, the containerd runtime, and Docker Compose with this command:
+
+apt install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+Output should look similar to:Install Docker
+
+You can verify Docker-CE, the Docker-CE CLI, containerd, and Docker Compose are installed by checking their versions with these commands:
+
+docker --version; docker compose version;ctr version
+
+
+
+
+
+
+
 Apache Nifi comes to mind if you are looking for a simple, but robust, tool to process data from various sources. 
 In short, Apache NiFi is a tool to process and distribute data. Its intuitive UI supports routing definitions, a variety of connectors 
 (in/out), and many built-in processors. All these features combined together make it a suitable optional platform for our use case.
