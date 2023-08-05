@@ -221,5 +221,25 @@ git clone https://github.com/devhusnain/dataStreaming.git
 use these commands to install python-pip and requirements for fastapi 
 sudo apt-get update
 sudo apt install python3-pip
+
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-06%2001-56-07.png"/>
 pip3 install -r requirements.txt
+
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-06%2002-01-00.png"/>
+
+sudo apt install nginx
+
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-06%2002-06-47.png"/>
+cd /etc/nginx/sites-enabled/
+sudo nano fastapi_nginx
+note: please change the public ip to ur ip
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-06%2002-08-47.png"/>
+sudo service nginx restart
+cd path to your fastapi
+python3 -m uvicorn api:app
+
+You can now access you fastapi via public ip 
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-06%2002-36-19.png"/>
+
+
 
