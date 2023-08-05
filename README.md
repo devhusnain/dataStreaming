@@ -11,7 +11,8 @@ The recommended way to install Docker Compose and related packages from Docker i
 
 To begin, update your package list:<br>
 
-apt update -y<br>
+apt update -y<be>
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-06%2001-26-20.png"/>
 Next, you'll need these four packages to allow apt to work with HTTPS-based repositories:
 
 ca-certificates - A package that verifies SSL/TLS certificates.
@@ -38,18 +39,23 @@ Add the Docker repo to your system with this command:<br>
 The output should look similar to:Add official Docker repo<br>
 
 #Step 2: Install Docker Compose And Related Packages<br>
-Now that you added Docker's repo, update your package lists again:<br>
+Now that you added Docker's repo, update your package lists again:<be>
 
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-06%2001-27-18.png"/>
+
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-06%2001-30-46.png"/>
 apt update -y <br>
 Next, install Docker-CE (Community Edition), the Docker-CE CLI, the containerd runtime, and Docker Compose with this command:<br>
 
 apt install docker-ce docker-ce-cli containerd.io docker-compose-plugin<br>
-Output should look similar to:Install Docker<br>
+Output should look similar to:Install Docker<be>
 
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-06%2001-31-20.png"/>
 You can verify Docker-CE, the Docker-CE CLI, containerd, and Docker Compose are installed by checking their versions with these commands:<br>
 
-docker --version; docker compose version;ctr version<br>
+docker --version; docker compose version;ctr version<be>
 
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-06%2001-31-43.png"/>
 
 
 
