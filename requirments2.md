@@ -29,7 +29,7 @@ however, an SCP never grants permissions. Instead, SCPs are JSON policies that s
  #example:
   Deny Public RDP Access: Deny RDP access (port 3389) to instances in a VPC from noncorporate IP addresses.
  Allow HTTPS Only: Allow only HTTPS (port 443) access to web servers from any location.
- '''json 
+```json 
  {
     "Version": "2012-10-17",
     "Statement": [
@@ -46,8 +46,7 @@ however, an SCP never grants permissions. Instead, SCPs are JSON policies that s
         }
     ]
 }
- '''
-
+```
 
  #Data Loss Prevention:
  Data loss prevention SCPs ensure sensitive data protection by controlling actions involving data transfer, encryption, and storage.
@@ -58,7 +57,7 @@ however, an SCP never grants permissions. Instead, SCPs are JSON policies that s
  #Example:
  Deny External S3 Bucket Sharing: Deny sharing of S3 buckets with external accounts.
  Encrypt EBS Volumes: Ensure that EBS volumes are encrypted at rest.
- '''json
+ ```json
  {
     "Version": "2012-10-17",
     "Statement": [
@@ -76,7 +75,7 @@ however, an SCP never grants permissions. Instead, SCPs are JSON policies that s
     ]
 }
 
- '''
+```
 
 
  #Regional Control:
@@ -92,7 +91,7 @@ however, an SCP never grants permissions. Instead, SCPs are JSON policies that s
  Allow use1 and usw2 Only: Allow resource creation only in the useast1 and uswest2 regions.
 
  
- '''json 
+```json
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -110,12 +109,12 @@ however, an SCP never grants permissions. Instead, SCPs are JSON policies that s
   ]
 }
 
- '''
+ ```
 
  
  Deny cac1 Usage: Deny resource creation in the Canada (Central) region.
 
- '''json
+```json
  {
   "Version": "2012-10-17",
   "Statement": [
@@ -132,7 +131,7 @@ however, an SCP never grants permissions. Instead, SCPs are JSON policies that s
     }
   ]
 }
-'''
+```
 
 
 #Approved Service Management:
@@ -146,7 +145,7 @@ avoiding unnecessary costs and potential security risks.
  a) Allow List for Development: Allow EC2, S3, and Lambda services for the Development environment.
 
  
- '''json
+ ```json
  {
   "Version": "2012-10-17",
   "Statement": [
@@ -163,12 +162,12 @@ avoiding unnecessary costs and potential security risks.
     }
   ]
 }
-'''
+```
 
 
 b) Deny the usage of specific services in the production environment.
 
-'''json
+```json
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -185,7 +184,7 @@ b) Deny the usage of specific services in the production environment.
     }
   ]
 }
-'''
+```
 
 
 #SCP Inheritance through OU Level:
@@ -212,7 +211,8 @@ Instance Type Control: SCPs can limit the instance types that can be launched to
 
 #Examples:
 a) Allow Start/Stop/Reboot for Tagged Instances:
-'''json
+
+```json
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -233,11 +233,11 @@ a) Allow Start/Stop/Reboot for Tagged Instances:
     }
   ]
 }
-'''
+```
 
 b) Deny Termination of Instances with Specific Tags:
 
-'''json
+```json
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -254,7 +254,7 @@ b) Deny Termination of Instances with Specific Tags:
     }
   ]
 }
-'''
+```
 
 
 ## EC2 Instance Maintenance Procedures
@@ -273,7 +273,7 @@ Auto Scaling and Load Balancing: Implement auto scaling and load balancing to en
 #Example:
 The following policy restricts all users from launching EC2 instances without IMDSv2
 
-'''json 
+```json 
 [
    {
       "Effect": "Deny",
@@ -312,10 +312,10 @@ The following policy restricts all users from launching EC2 instances without IM
       "Resource":""
    }
 ]
-'''
+```
 
 The following policy restricts all users from disabling the default Amazon EBS Encryption
-'''json
+```json
 {
   "Effect": "Deny",
   "Action": [
@@ -323,7 +323,7 @@ The following policy restricts all users from disabling the default Amazon EBS E
   ],
   "Resource": ""
 }
-'''
+```
 
 
 By implementing proper EC2 Instance Service Control Policies and following maintenance procedures, organizations can maintain a secure and well-managed AWS infrastructure,
@@ -346,7 +346,7 @@ The following example SCP prevents users from creating resource shares that allo
 
 ##example:
 
-'''json
+```json
 {
     "Version": "20121017",
     "Statement": [
@@ -366,14 +366,14 @@ The following example SCP prevents users from creating resource shares that allo
     ]
 }
 
-'''
+```
 
 
 
 Allowing specific accounts to share only specified resource types
 The following SCP allows accounts 111111111111 and 222222222222 to create resource shares that share prefix lists, and to associate prefix lists with existing resource shares.
 
-'''json
+```json
 {
     "Version": "20121017",
     "Statement": [
@@ -399,13 +399,13 @@ The following SCP allows accounts 111111111111 and 222222222222 to create re
         }
     ]
 }
-'''
+```
 
 Prevent sharing with organizations or organizational units (OUs)
 The following SCP prevents users from creating resource shares that share resources with an AWS Organization or OUs.
 
 
-'''json
+```json
 {
     "Version": "20121017",
     "Statement": [
@@ -428,14 +428,14 @@ The following SCP prevents users from creating resource shares that share resour
     ]
 }
 
-'''
+```
 
 Allow sharing with only specified IAM users and roles
 The following example SCP allows users to share resources with only organization o12345abcdef, organizational unit ou98765fedcba, and account 111111111111.
 
 
 
-'''json
+```json
 {
     "Version": "20121017",
     "Statement": [
@@ -458,8 +458,7 @@ The following example SCP allows users to share resources with only organizati
         }
     ]
 }
-'''
-
+```
 
 #SCP for resource tagging
 
@@ -472,7 +471,7 @@ IAM policies in AWS allow you to define permissions for users, groups, or roles 
 
 You can use IAM policies to control access to resources based on their tags. For example, you could create a policy that grants read-only access to EC2 instances with a specific "Environment" tag set to "Production." This would allow users or roles with that policy to view details of only those instances that match the specified tag criteria.
 
-'''json
+```json
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -493,7 +492,7 @@ You can use IAM policies to control access to resources based on their tags. For
     }
   ]
 }
-'''
+```
 
 .
 
@@ -501,7 +500,7 @@ Please note that AWS services and features may have evolved since my last update
 The following SCP prevents IAM users and roles in the affected accounts from creating certain resource types if the request doesn't include the specified tags.
 
 
-'''json
+```json
 {
   "Version": "20121017",
   "Statement": [
@@ -557,13 +556,13 @@ The following SCP prevents IAM users and roles in the affected accounts from cre
     }
   ]
 }
-'''
+```
 
 Prevent tags from being modified except by authorized principals
 The following SCP shows how a policy can allow only authorized principals to modify the tags attached to your resources. This is an important part of using attributebased access 8control (ABAC) as part of your AWS cloud security strategy. The policy allows a caller to modify the tags on only those resources where the authorization tag (in this example, accessproject) exactly matches the same authorization tag attached to the user or role making the request. The policy also prevents the authorized user from changing the value of the tag that is used for authorization. The calling principal must have the authorization tag to make any changes at all.
 This policy only blocks unauthorized users from changing tags. An authorized user who isn't blocked by this policy must still have a separate IAM policy that explicitly grants the Allow permission on the relevant tagging APIs. As an example, if your user has an administrator policy with Allow / (allow all services and all operations), then the combination results in the administrator user being allowed to change only those tags that have an authorization tag value that matches the authorization tag value attached to the user's principal. This is because the explicit Deny in the this policy overrides the explicit Allow in the administrator policy.
 
-'''json
+```json
 {
     "Version": "20121017",
     "Statement": [
@@ -630,7 +629,7 @@ This policy only blocks unauthorized users from changing tags. An authorized use
         }
     ]
 }
-'''
+```
 
 
 
@@ -642,7 +641,7 @@ Prevent users from deleting Amazon VPC flow logs
 This SCP prevents users or roles in any affected account from deleting Amazon Elastic Compute Cloud (Amazon EC2) flow logs or CloudWatch log groups or log streams.
 
 
-'''json
+```json
 {
   "Version": "20121017",
   "Statement": [
@@ -658,12 +657,12 @@ This SCP prevents users or roles in any affected account from deleting Amazon El
   ]
  }
 
-'''
+```
 Prevent any VPC that doesn't already have internet access from getting it
 This SCP prevents users or roles in any affected account from changing the configuration of your Amazon EC2 virtual private clouds (VPCs) to grant them direct access to the internet. It doesn't block existing direct access or any access that routes through your onpremises network environment.
 
 
-'''json
+```json
 {
   "Version": "20121017",
   "Statement": [
@@ -682,4 +681,4 @@ This SCP prevents users or roles in any affected account from changing the confi
     }
   ]
 }
-'''
+```
