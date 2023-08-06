@@ -29,6 +29,7 @@ however, an SCP never grants permissions. Instead, SCPs are JSON policies that s
  #example:
   Deny Public RDP Access: Deny RDP access (port 3389) to instances in a VPC from noncorporate IP addresses.
  Allow HTTPS Only: Allow only HTTPS (port 443) access to web servers from any location.
+ 
 ```json 
  {
     "Version": "2012-10-17",
@@ -57,6 +58,7 @@ however, an SCP never grants permissions. Instead, SCPs are JSON policies that s
  #Example:
  Deny External S3 Bucket Sharing: Deny sharing of S3 buckets with external accounts.
  Encrypt EBS Volumes: Ensure that EBS volumes are encrypted at rest.
+ 
  ```json
  {
     "Version": "2012-10-17",
