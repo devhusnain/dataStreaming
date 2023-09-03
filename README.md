@@ -322,3 +322,16 @@ You can now access you fastapi via public ip
 
 
 
+
+
+
+```json
+cat >>  ~/.bash_profile
+export PATH=~/kafka_2.12-2.8.1/bin:$PATH                                        
+export CLASSPATH=/home/ubuntu/aws-msk-iam-auth-1.1.9-all.jar
+export BOOTSTRAP_SERVERS=b-1.msk.ciosr2.c2.kafka.us-east-1.amazonaws.com:9098,b-2.msk.ciosr2.c2.kafka.us-east-1.amazonaws.com:9098,b-3.msk.ciosr2.c2.kafka.us-east-1.amazonaws.com:9098
+```
+
+
+
+
