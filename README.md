@@ -291,12 +291,18 @@ sudo apt install nginx
 ```
 
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-06%2002-06-47.png"/>
+
+
+
 ```bash
 cd /etc/nginx/sites-enabled/
 ```
+
+
 ```bash
 sudo nano fastapi_nginx
 ```
+
 note: please change the public ip to ur ip
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-06%2002-08-47.png"/>
 
