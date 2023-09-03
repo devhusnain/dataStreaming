@@ -11,7 +11,9 @@ The recommended way to install Docker Compose and related packages from Docker i
 
 To begin, update your package list:<br>
 
-```json apt update -y ```
+```json 
+apt update -y
+```
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-06%2001-26-20.png"/>
 Next, you'll need these four packages to allow apt to work with HTTPS-based repositories:
 
