@@ -140,10 +140,11 @@ docker run --name nifi-registry -p 18080:18080 -d apache/nifi-registr
 
 Step 5: Validation
 
-visit```bash 
+visit
+```bash 
 http://publicIP:8081/nifi
 ```
-      ```bash
+ ```bash
 http://publicIP:18080/nifi-registry
 ```
 
@@ -250,7 +251,8 @@ docker compose up airflow-init
 Running Airflow
 Now you can start all services:
 
-```bash docker compose up
+```bash
+docker compose up
 ```
 
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-06%2001-58-19.png"/>
@@ -276,6 +278,8 @@ sudo apt install python3-pip
 ```
 
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-06%2001-56-07.png"/>
+
+
 ```bash 
 pip3 install -r requirements.txt
 ```
@@ -287,17 +291,23 @@ sudo apt install nginx
 ```
 
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-06%2002-06-47.png"/>
-```bash cd /etc/nginx/sites-enabled/
+```bash
+cd /etc/nginx/sites-enabled/
 ```
-```bash sudo nano fastapi_nginx
+```bash
+sudo nano fastapi_nginx
 ```
 note: please change the public ip to ur ip
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-06%2002-08-47.png"/>
+
+
 ```bash
  sudo service nginx restart
 ```
 cd path to your fastapi
-```bash 
+
+
+```python 
 python3 -m uvicorn api:app
 ```
 
