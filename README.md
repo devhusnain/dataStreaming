@@ -11,7 +11,7 @@ The recommended way to install Docker Compose and related packages from Docker i
 
 To begin, update your package list:<br>
 
-apt update -y<be>
+```apt update -y ```
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-06%2001-26-20.png"/>
 Next, you'll need these four packages to allow apt to work with HTTPS-based repositories:
 
@@ -21,21 +21,22 @@ gnupg - An open source implementation of the Pretty Good Privacy (PGP) suite of 
 lsb-release - A utility for reporting Linux Standard Base (LSB) versions.
 Use this command to install those packages:<br>
 
-apt install ca-certificates curl gnupg lsb-release<br>
+```apt install ca-certificates curl gnupg lsb-release```
 Output will look similar to:Install prerequisites
 
 Make a directory for Docker's GPG key:<br>
 
-mkdir /etc/apt/demokeyrings<br>
+```mkdir /etc/apt/demokeyrings```
 Use curl to download Docker's keyring and pipe it into gpg to create a GPG file so apt trusts Docker's repo:<br>
 
- curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/demokeyrings/demodocker.gpg<br>
+ ```curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/demokeyrings/demodocker.gpg```
  
 Add the Docker repo to your system with this command:<br>
-
+```
  echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/demokeyrings/demodocker.gpg] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list<br>
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list
+```
 The output should look similar to:Add official Docker repo<br>
 
 #Step 2: Install Docker Compose And Related Packages<br>
@@ -44,16 +45,16 @@ Now that you added Docker's repo, update your package lists again:<be>
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-06%2001-27-18.png"/>
 
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-06%2001-30-46.png"/>
-apt update -y <br>
+```apt update -y ```
 Next, install Docker-CE (Community Edition), the Docker-CE CLI, the containerd runtime, and Docker Compose with this command:<br>
 
-apt install docker-ce docker-ce-cli containerd.io docker-compose-plugin<br>
-Output should look similar to:Install Docker<be>
+```apt install docker-ce docker-ce-cli containerd.io docker-compose-plugin```
+Output should look similar to:Install Docker
 
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-06%2001-31-20.png"/>
 You can verify Docker-CE, the Docker-CE CLI, containerd, and Docker Compose are installed by checking their versions with these commands:<br>
 
-docker --version; docker compose version;ctr version<be>
+```docker --version; docker compose version;ctr version```
 
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-06%2001-31-43.png"/>
 
@@ -67,14 +68,14 @@ In short, Apache NiFi is a tool to process and distribute data. Its intuitive UI
 (in/out), and many built-in processors. All these features combined together make it a suitable optional platform for our use case.
 
 #how to run nifi on ec2
-https://hub.docker.com/r/apache/nifi/
+```https://hub.docker.com/r/apache/nifi/```
 
 
 https://hub.docker.com/r/apache/nifi-...
 
 Step -1: Pull docker Image
 
-docker pull apache/nifi:latest
+```docker pull apache/nifi:latest```
 
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-04%2001-08-23.png"/>
 
@@ -90,34 +91,34 @@ Being able to see the loading and standard output of Nifi
 
 Create a shared volume between my host (shared-directory) and the container (ls-target)
 
-docker run --name devnifi -p 8081:8081 -d -e NIFI_WEB_HTTP_PORT='8081' apache/nifi:latest
+```docker run --name devnifi -p 8081:8081 -d -e NIFI_WEB_HTTP_PORT='8081' apache/nifi:latest```
 
 
 Step 3: Verify using logs
 
-docker logs -f devnifi
+```docker logs -f devnifi```
 
 Step 4: Pull Nifi registry and create container 
 
-docker pull apache/nifi-registry
+```docker pull apache/nifi-registry```
 
 then run the registry which managing version control for Nifi flow.
 
-docker run --name nifi-registry -p 18080:18080 -d apache/nifi-registry
+```docker run --name nifi-registry -p 18080:18080 -d apache/nifi-registry```
 
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-04%2001-29-01.png?token=GHSAT0AAAAAACF4RWEKIDPNLURUGSABYGWEZGMDWIQ"/>
 
 Step 5: Validation
 
-visit http://publicIP:8081/nifi
-      http://publicIP:18080/nifi-registry
+visit``` http://publicIP:8081/nifi```
+      ```http://publicIP:18080/nifi-registry```
 
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-04%2001-30-57.png?token=GHSAT0AAAAAACF4RWEK7IAE45RY7ZBJFUFIZGMDUVA"/>
 
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-04%2001-30-45.png?token=GHSAT0AAAAAACF4RWEKH5BTZPKZT277UFEEZGMDUUQ"/>
 
 #how to import template to nifi
-      go to http://publicIP:8081/nifi
+      go to ```http://publicIP:8081/nifi```
       Download template Joshua-final-stocks-nifi.xml from this repo
       click upload template 
       select template and upload it.
@@ -170,14 +171,13 @@ The default amount of memory available for Docker on macOS is often not enough t
 
 You can check if you have enough memory by running this command:
 
-docker run --rm "debian:bullseye-slim" bash -c 'numfmt --to iec $(echo $(($(getconf _PHYS_PAGES) * $(getconf PAGE_SIZE))))'
+```docker run --rm "debian:bullseye-slim" bash -c 'numfmt --to iec $(echo $(($(getconf _PHYS_PAGES) * $(getconf PAGE_SIZE))))'```
 
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-06%2001-47-56.png"/>
 
 Fetching docker-compose.yaml
 To deploy Airflow on Docker Compose, you should fetch docker-compose.yaml.
-
-curl -LfO 'https://airflow.apache.org/docs/apache-airflow/2.6.3/docker-compose.yaml'
+```curl -LfO 'https://airflow.apache.org/docs/apache-airflow/2.6.3/docker-compose.yaml'```
 
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-06%2001-51-06.png"/>
 
@@ -188,23 +188,23 @@ Setting the right Airflow user
 On Linux, the quick-start needs to know your host user id and needs to have group id set to 0. Otherwise the files created in dags, logs and plugins will be created with root user ownership. You have to make sure to configure them for the docker-compose:
 
 
-mkdir -p ./dags ./logs ./plugins ./config
+```mkdir -p ./dags ./logs ./plugins ./config```
 
-echo -e "AIRFLOW_UID=$(id -u)" > .env
+```echo -e "AIRFLOW_UID=$(id -u)" > .env```
 
 For other operating systems, you may get a warning that AIRFLOW_UID is not set, but you can safely ignore it. You can also manually create an .env file in the same folder as docker-compose.yaml with this content to get rid of the warning:
 
-AIRFLOW_UID=50000
+```AIRFLOW_UID=50000```
 
 Initialize the database
 On all operating systems, you need to run database migrations and create the first user account. To do this, run.
 
-docker compose up airflow-init
+```docker compose up airflow-init```
 
 Running Airflow
 Now you can start all services:
 
-docker compose up
+```docker compose up```
 
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-06%2001-58-19.png"/>
 
@@ -217,26 +217,26 @@ https://airflow.apache.org/docs/apache-airflow/stable/howto/docker-compose/index
 #How to deploy fastapi using nginx
 
 clone the repo by using this command
-git clone https://github.com/devhusnain/dataStreaming.git
+```git clone https://github.com/devhusnain/dataStreaming.git```
 use these commands to install python-pip and requirements for fastapi 
-sudo apt-get update
-sudo apt install python3-pip
+```sudo apt-get update```
+```sudo apt install python3-pip```
 
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-06%2001-56-07.png"/>
-pip3 install -r requirements.txt
+```pip3 install -r requirements.txt```
 
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-06%2002-01-00.png"/>
 
-sudo apt install nginx
+```sudo apt install nginx```
 
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-06%2002-06-47.png"/>
-cd /etc/nginx/sites-enabled/
-sudo nano fastapi_nginx
+```cd /etc/nginx/sites-enabled/```
+```sudo nano fastapi_nginx```
 note: please change the public ip to ur ip
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-06%2002-08-47.png"/>
-sudo service nginx restart
+```sudo service nginx restart```
 cd path to your fastapi
-python3 -m uvicorn api:app
+```python3 -m uvicorn api:app```
 
 You can now access you fastapi via public ip 
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-06%2002-36-19.png"/>
