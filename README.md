@@ -53,10 +53,14 @@ Now that you added Docker's repo, update your package lists again:<be>
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-06%2001-27-18.png"/>
 
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-06%2001-30-46.png"/>
+
+
+
+Next, install Docker-CE (Community Edition), the Docker-CE CLI, the containerd runtime, and Docker Compose with this command:<br>
+
 ```bash
 apt update -y
 ```
-Next, install Docker-CE (Community Edition), the Docker-CE CLI, the containerd runtime, and Docker Compose with this command:<br>
 
 ```bash 
 apt install docker-ce docker-ce-cli containerd.io docker-compose-plugin
