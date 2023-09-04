@@ -321,6 +321,60 @@ You can now access you fastapi via public ip
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-06%2002-36-19.png"/>
 
 
+# MSK service for kafka
+
+From the Debezium website ``` https://debezium.io/releases/2.3/ ```, I download the MySQL connector plugin for the latest stable release. Because MSK Connect accepts custom plugins in ZIP or JAR format, I convert the downloaded archive to ZIP format and keep the JARs files in the main directory:
+
+``` json
+tar xzf debezium-connector-mysql-2.3.3.Final-plugin.tar.gz
+```
+
+```json
+cd debezium-connector-mysql
+```
+```json
+zip -9 ../debezium-connector-mysql-2.3.3.zip *
+```
+```json
+cd ..
+```
+
+you can manully download this file  debezium-connector-mysql-2.3.3.Final-plugin.tar.gz  and create the zip file from it.
+
+
+
+Then, upload the custom plugin to an Amazon Simple Storage Service (Amazon S3) bucket in the same AWS Region I am using for MSK Connect:
+
+pic
+
+On the Amazon MSK console there is a new MSK Connect section. I look at the connectors and choose Create connector. Then, I create a custom plugin and browse my S3 buckets to select the custom plugin ZIP file I uploaded before.
+
+pic 
+
+I enter a name and a description for the plugin and then choose Next.
+
+pic
+
+
+Now that the configuration of the custom plugin is complete, I start the creation of the connector. I enter a name and a description for the connector.
+
+
+
+I have the option to use a self-managed Apache Kafka cluster or one that is managed by MSK. I select one of my MSK cluster that is configured to use IAM authentication. The MSK cluster I select is in the same virtual private cloud (VPC) as my Aurora database. To connect, the MSK cluster and Aurora database use the default security group for the VPC. For simplicity, I use a cluster configuration with auto.create.topics.enable set to true.
+
+pic
+
+
+
+
+
+# Msk connector
+
+
+
+
+
+
 
 
 
@@ -332,7 +386,7 @@ export CLASSPATH=/home/ubuntu/aws-msk-iam-auth-1.1.9-all.jar
 export BOOTSTRAP_SERVERS=b-1.msk.ciosr2.c2.kafka.us-east-1.amazonaws.com:9098,b-2.msk.ciosr2.c2.kafka.us-east-1.amazonaws.com:9098,b-3.msk.ciosr2.c2.kafka.us-east-1.amazonaws.com:9098
 ```
 
-
+```json
 
 connector.class=io.debezium.connector.mysql.MySqlConnector
 database.history.producer.sasl.mechanism=AWS_MSK_IAM
@@ -358,4 +412,92 @@ database.password=12345678
 database.history.consumer.sasl.mechanism=AWS_MSK_IAM
 database.include.list=stream_db
 
+```
+Some of these settings are generic and should be specified for any connector. For example:
 
+connector.class is the Java class of the connector.
+tasks.max is the maximum number of tasks that should be created for this connector.
+Other settings are specific to the Debezium MySQL connector:
+
+The database.hostname contains the writer instance endpoint of my Aurora database.
+The database.server.name is a logical name of the database server. It is used for the names of the Kafka topics created by Debezium.
+The database.include.list contains the list of databases hosted by the specified server.
+The database.history.kafka.topic is a Kafka topic used internally by Debezium to track database schema changes.
+The database.history.kafka.bootstrap.servers contains the bootstrap servers of the MSK cluster.
+The final eight lines (database.history.consumer.* and database.history.producer.*) enable IAM authentication to access the database history topic.
+
+In Connector capacity, I can choose between autoscaled or provisioned capacity. For this setup, I choose provisioned and leave all other settings at their defaults.
+
+For Worker configuration, you can use the default one provided by Amazon MSK or provide your own configuration. In my setup, I use the default one.
+
+In Access permissions, I create a IAM role. In the trusted entities, I add kafkaconnect.amazonaws.com to allow MSK Connect to assume the role.
+
+The role is used by MSK Connect to interact with the MSK cluster and other AWS services. For my setup, I add:
+
+Permissions to write logs to a Amazon CloudWatch log group I created earlier.
+Permissions to authenticate to my MSK cluster through IAM.
+The Debezium connector needs access to the cluster configuration to find the replication factor to use to create the history topic. For this reason, I add to the permissions policy the kafka-cluster:DescribeClusterDynamicConfiguration action (equivalent Apache Kafka’s DESCRIBE_CONFIGS cluster ACL).
+
+Depending on your configuration, you might need to add more permissions to the role (for example, in case the connector needs access to other AWS resources such as an S3 bucket). If that is the case, you should add permissions before creating the connector.
+
+pics
+
+
+
+I download a binary distribution of Apache Kafka and extract the archive in the home directory:
+
+$ tar xvf kafka_2.13-2.7.1.tgz
+To use IAM to authenticate with the MSK cluster, I follow the instructions in the Amazon MSK Developer Guide to configure clients for IAM access control. I download the latest stable release of the Amazon MSK Library for IAM:
+
+```json
+wget https://github.com/aws/aws-msk-iam-auth/releases/download/1.1.0/aws-msk-iam-auth-1.1.0-all.jar
+```
+In the ~/kafka_2.13-2.7.1/config/ directory I create a client-config.properties file to configure a Kafka client to use IAM authentication:
+
+```json
+# Sets up TLS for encryption and SASL for authN.
+security.protocol = SASL_SSL
+
+# Identifies the SASL mechanism to use.
+sasl.mechanism = AWS_MSK_IAM
+
+# Binds SASL client implementation.
+sasl.jaas.config = software.amazon.msk.auth.iam.IAMLoginModule required;
+
+# Encapsulates constructing a SigV4 signature based on extracted credentials.
+# The SASL client bound by "sasl.jaas.config" invokes this class.
+sasl.client.callback.handler.class = software.amazon.msk.auth.iam.IAMClientCallbackHandler
+```
+
+
+
+
+
+
+In the third terminal connection, I install a MySQL client using the MariaDB package and connect to the Aurora database:
+
+```json
+$ sudo apt install mariadb
+$ mysql -h database-2-instance-1.cvyohyithmox.us-east-1.rds.amazonaws.com -u admin -p
+
+```
+
+From this connection, I create the stock-database and a table for my stock:
+
+```
+CREATE TABLE stock (
+    record_id INT NOT NULL AUTO_INCREMENT,
+    time DATETIME NOT NULL,
+    open FLOAT NOT NULL,
+    high FLOAT NOT NULL,
+    low FLOAT NOT NULL,
+    close FLOAT NOT NULL,
+    volume FLOAT NOT NULL,
+    symbol VARCHAR(40),
+    event_time DATETIME DEFAULT NOW(),
+    PRIMARY KEY (record_id)
+);
+```
+
+
+These database changes are captured by the Debezium connector managed by MSK Connect and are streamed to the MSK cluster. In the first terminal, consuming the topic with schema changes, I see the information on the creation of database and table:
