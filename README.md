@@ -422,13 +422,7 @@ On the Amazon MSK console there is a new MSK Connect section. I look at the conn
 
 I enter a name and a description for the plugin and then choose Next.
 
-<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/connector1.png"/>
-<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/connector2.png"/>
-<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/connector3.png"/>
-<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/connector4.png"/>
-<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/connector5.png"/>
-<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/connector6.png"/>
-<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/connector7.png"/>
+
 
 Now that the configuration of the custom plugin is complete, I start the creation of the connector. I enter a name and a description for the connector.
 
@@ -436,7 +430,6 @@ Now that the configuration of the custom plugin is complete, I start the creatio
 
 I have the option to use a self-managed Apache Kafka cluster or one that is managed by MSK. I select one of my MSK cluster that is configured to use IAM authentication. The MSK cluster I select is in the same virtual private cloud (VPC) as my Aurora database. To connect, the MSK cluster and Aurora database use the default security group for the VPC. For simplicity, I use a cluster configuration with auto.create.topics.enable set to true.
 
-pic
 
 
 
@@ -514,7 +507,14 @@ The Debezium connector needs access to the cluster configuration to find the rep
 
 Depending on your configuration, you might need to add more permissions to the role (for example, in case the connector needs access to other AWS resources such as an S3 bucket). If that is the case, you should add permissions before creating the connector.
 
-pics
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/connector1.png"/>
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/connector2.png"/>
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/connector3.png"/>
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/connector4.png"/>
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/connector5.png"/>
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/connector6.png"/>
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/connector7.png"/>
+
 
 
 
