@@ -404,20 +404,6 @@ you can manully download this file  debezium-connector-mysql-2.3.3.Final-plugin.
 
 Then, upload the custom plugin to an Amazon Simple Storage Service (Amazon S3) bucket in the same AWS Region I am using for MSK Connect:
 
-<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/connector1.png"/>
-<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/connector2.png"/>
-<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/connector3.png"/>
-<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/connector4.png"/>
-<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/connector5.png"/>
-<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/connector6.png"/>
-<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/connector7.png"/>
-
-
-On the Amazon MSK console there is a new MSK Connect section. I look at the connectors and choose Create connector. Then, I create a custom plugin and browse my S3 buckets to select the custom plugin ZIP file I uploaded before.
-
-<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/s3zip.png"/> 
-
-I enter a name and a description for the plugin and then choose Next.
 
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/mskcluster1.png"/>
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/mskcluster2.png"/>
@@ -427,6 +413,21 @@ I enter a name and a description for the plugin and then choose Next.
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/mskcluster6.png"/>
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/mskcluster7.png"/>
 
+
+
+On the Amazon MSK console there is a new MSK Connect section. I look at the connectors and choose Create connector. Then, I create a custom plugin and browse my S3 buckets to select the custom plugin ZIP file I uploaded before.
+
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/s3zip.png"/> 
+
+I enter a name and a description for the plugin and then choose Next.
+
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/connector1.png"/>
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/connector2.png"/>
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/connector3.png"/>
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/connector4.png"/>
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/connector5.png"/>
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/connector6.png"/>
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/connector7.png"/>
 
 Now that the configuration of the custom plugin is complete, I start the creation of the connector. I enter a name and a description for the connector.
 
