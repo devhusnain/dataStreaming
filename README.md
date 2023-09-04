@@ -161,32 +161,91 @@ http://publicIP:18080/nifi-registry
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-04%2002-23-55.png?token=GHSAT0AAAAAACF4RWEKMU7ZNBHUJYEJOUBYZGMFGUQ"/>
 
 
+# Aurora (MySQL Compatible)  
+
+To create an Aurora DB cluster using the console
+Sign in to the AWS Management Console and open the Amazon RDS console at https://console.aws.amazon.com/rds/.
+
+In the upper-right corner of the AWS Management Console, choose the AWS Region in which you want to create the DB cluster.
+
+Aurora is not available in all AWS Regions. For a list of AWS Regions where Aurora is available, see Region availability.
+
+In the navigation pane, choose Databases.
+
+Choose Create database.
+
+For Choose a database creation method, choose Standard create.
+
+For Engine type, choose one of the following:
+
+Aurora (MySQL Compatible)
+
+Aurora (PostgreSQL Compatible)
 
 
-#about MySQL 
-#Step1: Pull MySQL Image from Docker Hub<br>
-First, pull MySQL from Docker Hub to the local system by executing the provided command in terminal <br>
+                                
+                            
+Choose the Engine version.
 
-#Step2: Build and Run MySQL Container <br>
-Then, create and run the MySQL container using the MySQL image through the “docker run -td –name mysql -e MYSQL_ROOT_PASSWORD=<password> mysql:latest” command:<br>
+For more information, see Amazon Aurora versions. You can use the filters to choose versions that are compatible with features that you want, such as Aurora Serverless v2. For more information, see Using Aurora Serverless v2.
 
-The “–name” option defines the name for the container i.e., “mySql-cont”.
-The “-e MYSQL_ROOT_PASSWORD” specifies the root password to “mysql123”.
-The “mysql:latest” is the latest MySQL Docker image to use for the container:<br>
+In Templates, choose the template that matches your use case.
 
-#Step3: View Running MySQL Container
-Write out the below-listed command to verify whether the MySQL container is running or not<br>
+To enter your master password, do the following:
 
-<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%20from%202023-08-04%2002-08-13.png?token=GHSAT0AAAAAACF4RWELO3PQF2Y5P3OBX5PKZGMFABQ"/>
+In the Settings section, expand Credential Settings.
 
-#Step4: Access MySQL Container
-After that, use the “docker exec -it mysql bash ” command with the container name to open the Bash shell inside the running MySQL container:
-The above-stated command has opened the Bash shell and now users can execute MySQL commands within the running MySQL container.<br>
+Clear the Auto generate a password check box.
 
-#Step5: Connect to MySQL Database
-Next, connect to the MySQL database as the root user via the following command and enter the password in an interactive mode:<br>
+(Optional) Change the Master username value and enter the same password in Master password and Confirm password.
 
-#Step6: Create a Database in MySQL
+By default, the new DB instance uses an automatically generated password for the master user.
+
+In the Connectivity section under VPC security group (firewall), if you select Create new, a VPC security group is created with an inbound rule that allows your local computer's IP address to access the database.
+
+For Cluster storage configuration, choose either Aurora I/O-Optimized or Aurora Standard. For more information, see Storage configurations for Amazon Aurora DB clusters.
+                        
+(Optional) Set up a connection to a compute resource for this DB cluster.
+
+You can configure connectivity between an Amazon EC2 instance and the new DB cluster during DB cluster creation. For more information, see Configure automatic network connectivity with an EC2 instance.
+
+For the remaining sections, specify your DB cluster settings. For information about each setting, see Settings for Aurora DB clusters.
+
+Choose Create database.
+
+If you chose to use an automatically generated password, the View credential details button appears on the Databases page.
+
+To view the master user name and password for the DB cluster, choose View credential details.
+
+To connect to the DB instance as the master user, use the user name and password that appear.
+
+Important
+You can't view the master user password again. If you don't record it, you might have to change it. If you need to change the master user password after the DB instance is available, you can modify the DB instance to do so. For more information about modifying a DB instance, see Modifying an Amazon Aurora DB cluster.
+
+For Databases, choose the name of the new Aurora DB cluster.
+
+On the RDS console, the details for new DB cluster appear. The DB cluster and its DB instance have a status of creating until the DB cluster is ready to use.
+
+
+                        
+                    
+When the state changes to available for both, you can connect to the DB cluster. Depending on the DB instance class and the amount of storage, it can take up to 20 minutes before the new DB cluster is available.
+
+To view the newly created cluster, choose Databases from the navigation pane in the Amazon RDS console. Then choose the DB cluster to show the DB cluster details. For more information, see Viewing an Amazon Aurora DB cluster.
+
+                    
+On the Connectivity & security tab, note the port and the endpoint of the writer DB instance. Use the endpoint and port of the cluster in your JDBC and ODBC connection strings for any application that performs write or read operations.
+
+
+
+
+
+
+
+
+
+
+# Create a Database
 To create a database in MySQL, execute the “CREATE DATABASE stream_db;” command:
 
 CREATE DATABASE stream_db;
