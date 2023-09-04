@@ -334,4 +334,28 @@ export BOOTSTRAP_SERVERS=b-1.msk.ciosr2.c2.kafka.us-east-1.amazonaws.com:9098,b-
 
 
 
+connector.class=io.debezium.connector.mysql.MySqlConnector
+database.history.producer.sasl.mechanism=AWS_MSK_IAM
+database.history.producer.sasl.jaas.config=software.amazon.msk.auth.iam.IAMLoginModule required;
+database.user=admin
+database.server.id=123456
+tasks.max=1
+database.history.consumer.sasl.jaas.config=software.amazon.msk.auth.iam.IAMLoginModule required;
+database.history.producer.security.protocol=SASL_SSL
+database.history.kafka.topic=dbhistory.stream_db
+database.history.kafka.bootstrap.servers=b-1.msk.ciosr2.c2.kafka.us-east-1.amazonaws.com:9098,b-2.msk.ciosr2.c2.kafka.us-east-1.amazonaws.com:9098,b-3.msk.ciosr2.c2.kafka.us-east-1.amazonaws.com:9098
+database.server.name=stock-server
+database.history.producer.sasl.client.callback.handler.class=software.amazon.msk.auth.iam.IAMClientCallbackHandler
+schema.history.internal.kafka.bootstrap.servers=b-1.msk.ciosr2.c2.kafka.us-east-1.amazonaws.com:9098,b-2.msk.ciosr2.c2.kafka.us-east-1.amazonaws.com:9098,b-3.msk.ciosr2.c2.kafka.us-east-1.amazonaws.com:9098
+database.history.consumer.sasl.client.callback.handler.class=software.amazon.msk.auth.iam.IAMClientCallbackHandler
+database.history.consumer.security.protocol=SASL_SSL
+database.port=3306
+include.schema.changes=true
+topic.prefix=stream_db_
+schema.history.internal.kafka.topic=stream_db_internal
+database.hostname=database-2-instance-1.cvyohyithmox.us-east-1.rds.amazonaws.com
+database.password=12345678
+database.history.consumer.sasl.mechanism=AWS_MSK_IAM
+database.include.list=stream_db
+
 
