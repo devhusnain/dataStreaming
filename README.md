@@ -577,35 +577,57 @@ CREATE TABLE stock (
 These database changes are captured by the Debezium connector managed by MSK Connect and are streamed to the MSK cluster. In the first terminal, consuming the topic with schema changes, I see the information on the creation of database and table:
 
 # EMR
-Create cluster 
+Create cluster  by clicking on button create cluster
 
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%202023-09-07%20202230.png" />
+Choose name for the emr cluster and version i am using 6.9.0 version
 
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/1.png" />
 
+Choose 3 Applications  Hive , Spark , Livy and choose aws glue data catalog settings  select use for spark table metadata
+
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/2.png" />
 
+Choose primary , core and task instance  type i am using small
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/3.png" />
 
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/4.png" />
 
+Select cluster size manually
+
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/5.png" />
+
+choose vps of your choice
 
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/6.png" />
 
+choose cluster termination 
+
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/7.png" />
+choose your logs s3 bucket
 
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/8.png" />
 
+Select ssh key
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/9.png" />
 
+create a service role or choose existing one i am select create a service role
+
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/10.png" />
+Select ec2 role
 
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/11.png" />
 
+Emr created wait for it to be available
+
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/12.png" />
 
+Copy livy url from emr and paste there as shown in blow in in file lambda_function.py
+
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/13.png" />
+
+Copy livy url from emr and paste there as shown in blow in in file airflowlambda.py
+
 
 <img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/14.png" />
 
