@@ -575,3 +575,38 @@ CREATE TABLE stock (
 
 
 These database changes are captured by the Debezium connector managed by MSK Connect and are streamed to the MSK cluster. In the first terminal, consuming the topic with schema changes, I see the information on the creation of database and table:
+
+# EMR
+Create cluster 
+
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/Screenshot%202023-09-07%20202230.png" />
+
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/1.png" />
+
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/2.png" />
+
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/3.png" />
+
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/4.png" />
+
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/5.png" />
+
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/6.png" />
+
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/7.png" />
+
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/8.png" />
+
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/9.png" />
+
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/10.png" />
+
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/11.png" />
+
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/12.png" />
+
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/13.png" />
+
+<img src="https://raw.githubusercontent.com/devhusnain/dataStreaming/main/images/14.png" />
+
+
